@@ -2,23 +2,24 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
-
+    
     public function authorize(): bool
     {
         return true;
     }
 
-   
+
     public function rules(): array
     {
+        $id = Auth::user()->id;
         return [
             'name'=>"required|string|max:255",
-            'email'=>"required|email|unique:users,email",
-            'password'=>"required|string|confirmed|min:6"
+            'email'=>"required|email|unique:users,email,$id"
         ];
     }
 }
