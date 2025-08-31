@@ -17,6 +17,7 @@ class ChangePasswordController extends Controller
             return back()->with('error','Current Password Incorrect');
 
         Auth::user()->update(['password'=>Hash::make($request->new_password)]);
+        Auth::login(Auth::user());
         return back()->with('success','Password Changed Successully');
 
     }

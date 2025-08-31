@@ -18,7 +18,8 @@ class User extends Authenticatable
         'email',
         'password',
         'otp',
-        'email_verified_at'
+        'email_verified_at',
+        'logout_other_devices'
     ];
 
 

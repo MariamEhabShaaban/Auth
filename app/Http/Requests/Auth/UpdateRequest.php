@@ -19,7 +19,8 @@ class UpdateRequest extends FormRequest
         $id = Auth::user()->id;
         return [
             'name'=>"required|string|max:255",
-            'email'=>"required|email|unique:users,email,$id"
+            'email'=>"required|email|unique:users,email,$id",
+            'logout_other_devices'=>'nullable|in:on,off'
         ];
     }
 }

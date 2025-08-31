@@ -11,6 +11,11 @@
 
 <body class="bg-gray-900 text-white flex items-center justify-center h-screen">
     <div class="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-lg shadow-lg">
+        @if (session('error'))
+            <div class="bg-red-500 text-white p-4 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
         <h2 class="text-3xl font-bold text-center">Register</h2>
         <form action="{{ route('register') }}" method="POST" class="space-y-4">
             @csrf

@@ -13,7 +13,9 @@ class UpdateProfileController extends Controller
 
     public function __invoke(UpdateRequest $request)
     {
-       Auth::user()->update($request->validated());
-       return to_route('profile')->with('success','Profile Updated Successfully');
+        $data = $request->validated();
+        $data['logout_other_devices'] = $request->logout_other_devices?true:false;
+        Auth::user()->update($data);
+        return to_route('profile')->with('success','Profile Updated Successfully');
     }
 }

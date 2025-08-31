@@ -20,8 +20,15 @@ class RegisterController extends Controller
         $data = $request->all();
         $data['otp']=$otp;
         $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
-        Mail::to($request->email)->send(new VerifyAccount($otp));
-        return to_route('verify-email',['email'=>$user->email])->with('success','Account created successfully');
+        try {
+            Mail::to($user->email)->send(new WelcomeMail($user));
+             $user = User::create($data);
+             return to_route('verify-email',['email'=>$user->email])->with('success','Account created successfully');
+        } catch (\Exception $e) {
+            return to_route('register')->with('error','check your internet connection');
+        }
+       
+        }
+        
     }
-}
+
