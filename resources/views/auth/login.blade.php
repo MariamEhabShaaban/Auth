@@ -36,6 +36,13 @@
             <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
         @enderror
     </div>
+    <div class="flex items-center mb-4">
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember" class="block text-gray-300 ml-1">Remember Me</label>
+        @error('remember')
+            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+        @enderror
+    </div>
     <p class="mt-4 text-sm">Forgot your passsword? <a href="{{ route('password.request') }}"
             class="text-blue-400 hover:underline">Reset now</a></p>
     <button type="submit"

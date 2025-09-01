@@ -15,10 +15,12 @@ class LoginController extends Controller
      public function __invoke(LoginRequest $request)
     {
        
+       
         if(Auth::attempt($request->only('email','password'))){
       
             if(Auth::user()->email_verified_at){
-                Auth::login(Auth::user());
+                $remember = $request->remember?true:false;
+                Auth::login(Auth::user(),$remember);
                 if(Auth::user()->logout_other_devices){
                   Auth::logoutOtherDevices($request->password);
                 }

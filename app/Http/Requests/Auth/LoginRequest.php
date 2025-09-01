@@ -17,7 +17,8 @@ class LoginRequest extends FormRequest
     {
         return [
             'email'=>'required|email|exists:users,email',
-            'password'=>'required|string'
+            'password'=>'required|string',
+            'remember'=>"nullable|in:on,off"
         ];
     }
 }
